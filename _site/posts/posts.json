@@ -1,0 +1,18 @@
+[
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to My First Blog",
+    "description": "Welcome to our new blog. We hope you enjoy \nreading what we have to say!",
+    "author": [
+      {
+        "name": "Rahul Bharadwaj",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2020-08-29",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-08-29T00:50:37+10:00",
+    "input_file": {}
+  }
+]
