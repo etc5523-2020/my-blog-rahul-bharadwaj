@@ -9,17 +9,19 @@ date: 09-04-2020
 output:
   distill::distill_article:
     self_contained: false
-draft: TRUE
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(tidycovid19)
+library(here)
+library(reactable)
 ```
 
-```{r}
-tidycovid19::download_wbank_data()
+# Data Description
+```{r ReadData}
+covidSA <- COVID19::covid19(country = "South Africa", verbose = FALSE)
 ```
 
+# Data Story
 
