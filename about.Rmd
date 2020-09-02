@@ -1,7 +1,7 @@
 ---
 title: "About this blog"
 description: |
-  Some additional details about the blog
+  A blogging website for Blog Entries of the Unit "Communicating with Data - ETC5523"
 ---
 
 ```{r setup, include=FALSE}

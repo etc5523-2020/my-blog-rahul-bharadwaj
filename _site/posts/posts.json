@@ -1,18 +1,18 @@
 [
   {
-    "path": "posts/welcome/",
+    "path": "posts/Covid-19-SA/",
     "title": "COVID-19 in South Africa",
     "description": "A data story of COVID-19 in South Africa",
     "author": [
       {
         "name": "Rahul Bharadwaj",
-        "url": "https://example.com/norajones"
+        "url": "https://rahul-bharadwaj.github.io/My-Portfolio/"
       }
     ],
-    "date": "2020-08-29",
+    "date": "2020-09-04",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-09-02T21:05:18+10:00",
-    "input_file": "Covid-19-SA.utf8.md"
+    "last_modified": "2020-09-02T21:25:25+10:00",
+    "input_file": {}
   }
 ]

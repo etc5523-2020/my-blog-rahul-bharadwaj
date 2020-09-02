@@ -4,20 +4,22 @@ description: |
   A data story of COVID-19 in South Africa
 author:
   - name: Rahul Bharadwaj
-    url: https://example.com/norajones
-date: 08-29-2020
+    url: https://rahul-bharadwaj.github.io/My-Portfolio/
+date: 09-04-2020
 output:
   distill::distill_article:
     self_contained: false
+draft: TRUE
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
-
+library(tidyverse)
+library(tidycovid19)
 ```
 
+```{r}
+tidycovid19::download_wbank_data()
+```
 
 
