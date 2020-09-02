@@ -1,8 +1,8 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to My First Blog",
-    "description": "Welcome to our new blog. We hope you enjoy \nreading what we have to say!",
+    "title": "COVID-19 in South Africa",
+    "description": "A data story of COVID-19 in South Africa",
     "author": [
       {
         "name": "Rahul Bharadwaj",
@@ -12,7 +12,7 @@
     "date": "2020-08-29",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-08-29T00:50:37+10:00",
-    "input_file": {}
+    "last_modified": "2020-09-02T21:05:18+10:00",
+    "input_file": "Covid-19-SA.utf8.md"
   }
 ]
