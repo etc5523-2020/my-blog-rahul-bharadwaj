@@ -19,7 +19,6 @@ library(here)
 library(reactable)
 library(DT)
 library(ggpubr)
-library(qwraps2)
 library(kableExtra)
 ```
 
@@ -150,8 +149,26 @@ kable(Daily %>% na.omit() %>% summarise(MaxTests = max(dailytest),
 
 # **References -**
 
-* Data Source - 
+* Data Source - Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376
 
 * Data Tables - https://rstudio.github.io/DT/
 
 * Reactable - https://glin.github.io/reactable/
+
+* Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software,
+  4(43), 1686, https://doi.org/10.21105/joss.01686
+
+* Kirill Müller (2017). here: A Simpler Way to Find Your Files. R package version 0.1.
+  https://CRAN.R-project.org/package=here
+  
+* Greg Lin (2020). reactable: Interactive Data Tables Based on 'React Table'.
+  https://glin.github.io/reactable/, https://github.com/glin/reactable.
+  
+* Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript Library
+  'DataTables'. R package version 0.15. https://CRAN.R-project.org/package=DT
+  
+* Alboukadel Kassambara (2020). ggpubr: 'ggplot2' Based Publication Ready Plots. R
+  package version 0.4.0. https://CRAN.R-project.org/package=ggpubr
+  
+* Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. R
+  package version 1.1.0. https://CRAN.R-project.org/package=kableExtra
