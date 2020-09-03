@@ -20,6 +20,7 @@ library(reactable)
 library(DT)
 library(ggpubr)
 library(qwraps2)
+library(kableExtra)
 ```
 
 # **Introduction -**
@@ -34,13 +35,13 @@ covidSA <- COVID19::covid19(country = "South Africa", verbose = FALSE)
 
 * The data used for this blog story is obtained from: **Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376**, through the R package "COVID19" and filtered for the country South Africa.
 
-* This data contains details from `r min(covidSA$date)` to `r max(covidSA$date)`. It consists of the following columns:
+* Date ranges from `r min(covidSA$date)` to `r max(covidSA$date)`. **It consists of the following columns:**
 
 ```{r columns}
 datatable(as.tibble(names(covidSA)))
 ```
 
-* The following table consists of the columns of interest.
+* The following table consists of the **columns of interest and thor values**.
 
 ```{r wrangling}
 covidSA %>% select(date, tests, confirmed, recovered) %>% reactable(highlight = TRUE)
@@ -64,30 +65,30 @@ covidSA %>% ggplot() +
   theme_bw()
 ```
 
-* As inferred, tests have begun far before the first case was confirmed. We can see a close relation with the number of people recovered with the confirmed cases. The death rate seems to be low in this plot. It will be a good idea to view each attribute seperately to get a better picture.
+* As inferred from the table, tests have begun far before the first case was confirmed. We can see a close relation with the number of people recovered with the confirmed cases. The death rate seems to be low in this plot. It will be a good idea to view each attribute seperately to get a better picture.
 
 ```{r plot2, fig.cap='Comparing Tests, Cases, Recoveries, and Deaths'}
-tested <- covidSA %>% ggplot() +
+test <- covidSA %>% ggplot() +
   geom_line(aes(x = date, y = tests)) +
   xlab("Date") + ylab("Tests") + ggtitle("Number of Tests for Covid in SA") +
   theme_bw()
 
-confirmed <- covidSA %>% ggplot() +
+conf <- covidSA %>% ggplot() +
   geom_path(aes(x = date, y = confirmed)) +
   xlab("Date") + ylab("Tests") + ggtitle("Confirmed Covid cases in SA") +
   theme_bw()
 
-recovered <- covidSA %>% ggplot() +
+reco <- covidSA %>% ggplot() +
   geom_path(aes(x = date, y = recovered)) +
   xlab("Date") + ylab("Tests") + ggtitle("Recovered Covid cases in SA") +
   theme_bw()
 
-deaths <- covidSA %>% ggplot() +
+deat <- covidSA %>% ggplot() +
   geom_path(aes(x = date, y = deaths)) +
   xlab("Date") + ylab("Deaths") + ggtitle("Deaths due to Covid in SA") +
   theme_bw()
 
-ggarrange(tested, confirmed, recovered, deaths)
+ggarrange(test, conf, reco, deat)
 ```
 * Totals for each attribute in SA:
 
@@ -95,6 +96,55 @@ ggarrange(tested, confirmed, recovered, deaths)
   + Total Confirmed - `r na.omit(covidSA$confirmed) %>% max()`
   + Total Recovered - `r na.omit(covidSA$recovered) %>% max()`
   + Total Deaths - `r na.omit(covidSA$deaths) %>% max()`
+  
+* **A useful way to summarize data is by daily basis.** The following table explores the same.
+  
+```{r Daily}
+nCovSA <- covidSA %>% select(date, tests, confirmed, recovered, deaths)
+
+Daily <- nCovSA %>% mutate(lag_tests = lag(nCovSA$tests),
+                  dailytest = (nCovSA$tests - lag_tests),
+                  lag_confirm = lag(nCovSA$confirmed),
+                  dailyconfirm = (nCovSA$confirmed - lag_confirm),
+                  lag_recover = lag(nCovSA$recovered),
+                  dailyrecover = (nCovSA$recovered - lag_recover),
+                  lag_deaths = lag(nCovSA$deaths),
+                  dailydeaths = (nCovSA$deaths - lag_deaths)) %>% 
+  select(date, dailytest, dailyconfirm, dailyrecover, dailydeaths)
+reactable(Daily, highlight = TRUE)
+```
+
+* The following tables show Summary Statistics of the above columns.
+
+1. Mean Summaries:
+
+```{r DailySummary}
+kable(Daily %>% na.omit() %>% summarise(MeanTests = mean(dailytest),
+                                  MeanConfirmed = mean(dailyconfirm),
+                                  MeanRecovered = mean(dailyrecover),
+                                  MeanDeaths = mean(dailydeaths))) %>%
+  kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
+```
+
+2. Minimum Summaries:
+
+```{r}
+kable(Daily %>% na.omit() %>% summarise(MinTests = min(dailytest),
+                                  MinConfirmed = min(dailyconfirm),
+                                  MinRecovered = min(dailyrecover),
+                                  MinDeaths = min(dailydeaths))) %>%
+  kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
+```
+
+3. Maximum Summaries:
+
+```{r}
+kable(Daily %>% na.omit() %>% summarise(MaxTests = max(dailytest),
+                                  MaxConfirmed = max(dailyconfirm),
+                                  MaxRecovered = max(dailyrecover),
+                                  MaxDeaths = max(dailydeaths))) %>%
+  kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
+```
 
 
 
