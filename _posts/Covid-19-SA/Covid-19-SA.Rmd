@@ -5,6 +5,7 @@ description: |
 author:
   - name: Rahul Bharadwaj
     url: https://rahul-bharadwaj.github.io/My-Portfolio/
+    affiliation: Monash University
 date: 09-04-2020
 output:
   distill::distill_article:
@@ -12,16 +13,95 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center")
 library(tidyverse)
 library(here)
 library(reactable)
+library(DT)
+library(ggpubr)
+library(qwraps2)
 ```
 
-# Data Description
+# **Introduction -**
+
+Covid-19 has dropped a bombshell out of the blue and caught the world unaware. It has negatively impacted the lives of millions and proved fatal to thousands of others. With over 25 million cases and 800K deaths around he globe as of Sep 2020, this has been a serious issue of concern for the Governments of all the countries. Amidst the pandemic, this is the story of how South Africa was affected by it. This blog story helps understand the Covid situation in SA.
+
+# **Data Description -**
+
 ```{r ReadData}
 covidSA <- COVID19::covid19(country = "South Africa", verbose = FALSE)
 ```
 
-# Data Story
+* The data used for this blog story is obtained from: **Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376**, through the R package "COVID19" and filtered for the country South Africa.
 
+* This data contains details from `r min(covidSA$date)` to `r max(covidSA$date)`. It consists of the following columns:
+
+```{r columns}
+datatable(as.tibble(names(covidSA)))
+```
+
+* The following table consists of the columns of interest.
+
+```{r wrangling}
+covidSA %>% select(date, tests, confirmed, recovered) %>% reactable(highlight = TRUE)
+```
+
+* The above table is interactive and can be used to get an overview of the data. Specifics like when the testings started, when the first case was confirmed, how many recovered, and how many had died can be determined by exploring the table. Click on 'Next' to explore all 225 rows.
+
+# **Data Story -**
+
+* Testing in South Africa seems to have started on 11 Feb 2020. The first confirmed case was on 05 Mar 2020. The first fatality due to Covid was on 22 Mar 2020. All of this is inferred from briefly having a look at the interactive table.
+
+* Let us have a look at these timelines.
+
+```{r plot1, fig.cap='Covid Timeline in South Africa'}
+covidSA %>% ggplot() +
+  geom_path(aes(x = date, y = tests, color = "tested")) +
+  geom_path(aes(x = date, y = confirmed, color = "confirmed")) +
+  geom_path(aes(x = date, y = recovered, color = "recovered")) +
+  geom_path(aes(x = date, y = deaths, color = "deaths")) +
+  xlab("Date") + ylab("Attribute Counts") + ggtitle("Timeline Curves for Covid in SA") +
+  theme_bw()
+```
+
+* As inferred, tests have begun far before the first case was confirmed. We can see a close relation with the number of people recovered with the confirmed cases. The death rate seems to be low in this plot. It will be a good idea to view each attribute seperately to get a better picture.
+
+```{r plot2, fig.cap='Comparing Tests, Cases, Recoveries, and Deaths'}
+tested <- covidSA %>% ggplot() +
+  geom_line(aes(x = date, y = tests)) +
+  xlab("Date") + ylab("Tests") + ggtitle("Number of Tests for Covid in SA") +
+  theme_bw()
+
+confirmed <- covidSA %>% ggplot() +
+  geom_path(aes(x = date, y = confirmed)) +
+  xlab("Date") + ylab("Tests") + ggtitle("Confirmed Covid cases in SA") +
+  theme_bw()
+
+recovered <- covidSA %>% ggplot() +
+  geom_path(aes(x = date, y = recovered)) +
+  xlab("Date") + ylab("Tests") + ggtitle("Recovered Covid cases in SA") +
+  theme_bw()
+
+deaths <- covidSA %>% ggplot() +
+  geom_path(aes(x = date, y = deaths)) +
+  xlab("Date") + ylab("Deaths") + ggtitle("Deaths due to Covid in SA") +
+  theme_bw()
+
+ggarrange(tested, confirmed, recovered, deaths)
+```
+* Totals for each attribute in SA:
+
+  + Total Tests - `r na.omit(covidSA$tests) %>% max()`
+  + Total Confirmed - `r na.omit(covidSA$confirmed) %>% max()`
+  + Total Recovered - `r na.omit(covidSA$recovered) %>% max()`
+  + Total Deaths - `r na.omit(covidSA$deaths) %>% max()`
+
+
+
+# **References -**
+
+* Data Source - 
+
+* Data Tables - https://rstudio.github.io/DT/
+
+* Reactable - https://glin.github.io/reactable/
