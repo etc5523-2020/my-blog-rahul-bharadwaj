@@ -22,9 +22,13 @@ library(ggpubr)
 library(kableExtra)
 ```
 
+```{r Image}
+knitr::include_graphics(here::here("COVIDSA.png"))
+```
+
 # **Introduction -**
 
-Covid-19 has dropped a bombshell out of the blue and caught the world unaware. It has negatively impacted the lives of millions and proved fatal to thousands of others. With over 25 million cases and 800K deaths around he globe as of Sep 2020, this has been a serious issue of concern for the Governments of all the countries. Amidst the pandemic, this is the story of how South Africa was affected by it. This blog story helps understand the Covid situation in SA.
+Covid-19 has dropped a bombshell out of the blue and caught the world unaware. It has negatively impacted the lives of millions and proved fatal to thousands of others. With over 25 million cases and 800K deaths around the globe as of Sep 2020, this has been a serious issue of concern for the Governments of all the countries. Amidst the pandemic, this is the story of how South Africa was affected by it. This blog story helps understand the Covid situation in SA.
 
 # **Data Description -**
 
@@ -37,24 +41,22 @@ covidSA <- COVID19::covid19(country = "South Africa", verbose = FALSE)
 * Date ranges from `r min(covidSA$date)` to `r max(covidSA$date)`. **It consists of the following columns:**
 
 ```{r columns}
-datatable(as.tibble(names(covidSA)))
+datatable(as.tibble(names(covidSA)), colnames = "Attribute")
 ```
 
-* The following table consists of the **columns of interest and thor values**.
+* The following table consists of the **columns of interest and their values**.
 
 ```{r wrangling}
-covidSA %>% select(date, tests, confirmed, recovered) %>% reactable(highlight = TRUE)
+covidSA %>% select(date, tests, confirmed, recovered, deaths) %>% reactable(highlight = TRUE)
 ```
 
 * The above table is interactive and can be used to get an overview of the data. Specifics like when the testings started, when the first case was confirmed, how many recovered, and how many had died can be determined by exploring the table. Click on 'Next' to explore all 225 rows.
 
 # **Data Story -**
 
-* Testing in South Africa seems to have started on 11 Feb 2020. The first confirmed case was on 05 Mar 2020. The first fatality due to Covid was on 22 Mar 2020. All of this is inferred from briefly having a look at the interactive table.
+* Let us have a look at the timelines for tests, confirmed, recovered, and deaths due to COVID.
 
-* Let us have a look at these timelines.
-
-```{r plot1, fig.cap='Covid Timeline in South Africa'}
+```{r plot1, fig.cap='Covid Timeline in South Africa', preview = TRUE}
 covidSA %>% ggplot() +
   geom_path(aes(x = date, y = tests, color = "tested")) +
   geom_path(aes(x = date, y = confirmed, color = "confirmed")) +
@@ -64,7 +66,11 @@ covidSA %>% ggplot() +
   theme_bw()
 ```
 
-* As inferred from the table, tests have begun far before the first case was confirmed. We can see a close relation with the number of people recovered with the confirmed cases. The death rate seems to be low in this plot. It will be a good idea to view each attribute seperately to get a better picture.
+* As inferred from the interactive table, tests have begun far before the first case was confirmed. This might indicate that the pandemic was rising elsewhere and had not spread to SA yet and they were taking precautions.
+
+* We can see a close relation with the number of people recovered with the confirmed cases. This indicates most of the people recovered approximately within 2 weeks after infection.
+
+* It will be a good idea to view each attribute separately to get a better picture.
 
 ```{r plot2, fig.cap='Comparing Tests, Cases, Recoveries, and Deaths'}
 test <- covidSA %>% ggplot() +
@@ -117,43 +123,58 @@ reactable(Daily, highlight = TRUE)
 
 1. Mean Summaries:
 
-```{r DailySummary}
+```{r Mean}
 kable(Daily %>% na.omit() %>% summarise(MeanTests = mean(dailytest),
                                   MeanConfirmed = mean(dailyconfirm),
                                   MeanRecovered = mean(dailyrecover),
-                                  MeanDeaths = mean(dailydeaths))) %>%
+                                  MeanDeaths = mean(dailydeaths)),
+      caption = "Mean Summary") %>%
   kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
 ```
 
 2. Minimum Summaries:
 
-```{r}
+```{r Min}
 kable(Daily %>% na.omit() %>% summarise(MinTests = min(dailytest),
                                   MinConfirmed = min(dailyconfirm),
                                   MinRecovered = min(dailyrecover),
-                                  MinDeaths = min(dailydeaths))) %>%
+                                  MinDeaths = min(dailydeaths)),
+      caption = "Minimum Summary") %>%
   kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
 ```
 
 3. Maximum Summaries:
 
-```{r}
+```{r Max}
 kable(Daily %>% na.omit() %>% summarise(MaxTests = max(dailytest),
                                   MaxConfirmed = max(dailyconfirm),
                                   MaxRecovered = max(dailyrecover),
-                                  MaxDeaths = max(dailydeaths))) %>%
+                                  MaxDeaths = max(dailydeaths)),
+      caption = "Maximum Summary") %>%
   kable_styling(bootstrap_options = ("striped"), full_width = FALSE)
 ```
 
+# **Conclusions & Observations -**
 
+* South Africa had started testing for Covid during March 2020 when the cases started rising throughout the world. Testing in South Africa seems to have started on 11 Feb 2020. The first confirmed case was on 05 Mar 2020. The first fatality due to Covid was on 22 Mar 2020. Refer figure \@ref(fig:plot1)
+
+* The number of recoveries increase almost equally with the number of cases confirmed. This means there was only a small proportion of fatalities compared to number of recoveries. Refer figure \@ref(fig:plot2)
+
+* We can see that on an average, there were 21728 tests conducted out of which 3685 cases were confirmed. Also, there were 3237 recoveries and 84 deaths on an average, on a daily basis in SA. Refer table \@ref(tab:Mean)
+
+* There was a minimum of 76 tests conducted, 3 cases confirmed, and 0 recoveries and deaths in SA on any given day. Refer table \@ref(tab:Min)
+
+* SA saw the worst phase of the pandemic when there were 13944 confirmed cases and 572 deaths on any given day. Refer table \@ref(tab:Max)
 
 # **References -**
+
+* Image Editor for Blog Banner - https://www.canva.com/
 
 * Data Source - Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376
 
 * Data Tables - https://rstudio.github.io/DT/
 
-* Reactable - https://glin.github.io/reactable/
+* Reactable - https://glin.github.io/reactable/reference/reactable.html
 
 * Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software,
   4(43), 1686, https://doi.org/10.21105/joss.01686
