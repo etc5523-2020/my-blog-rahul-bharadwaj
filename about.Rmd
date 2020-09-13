@@ -10,10 +10,10 @@ library(png)
 ```
 
 ```{r Picture}
-knitr::include_graphics(here::here("RahulBharadwaj.png"))
+knitr::include_graphics(here::here("Images/RahulBharadwaj.png"))
 ```
 
 <center> #### **Rahul Bharadwaj Mysore Venkatesh** \center
 <center> Pursuing Master of Business Analytics at Monash University | Mar 2020 - Dec 2021\center
 
-<center> [LinkedIn](https://www.linkedin.com/in/rahul-bharadwaj-20/) | [GitHub](https://github.com/rahul-bharadwaj)
+<center> [LinkedIn](https://www.linkedin.com/in/rahul-bharadwaj-20/) | [GitHub](https://github.com/rahul-bharadwaj) | [Personal Website](https://rahul-bharadwaj.github.io/My-Portfolio/)

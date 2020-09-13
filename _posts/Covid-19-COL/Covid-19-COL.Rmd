@@ -1,0 +1,208 @@
+---
+title: "COVID-19 in Colombia"
+description: |
+  A data story of COVID-19 in Colombia
+author:
+  - name: Rahul Bharadwaj
+    url: https://rahul-bharadwaj.github.io/My-Portfolio/
+    affiliation: Monash University
+date: 09-12-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center")
+library(tidyverse)
+library(here)
+library(DT)
+library(plotly)
+library(ggpubr)
+```
+
+# **Introduction -**
+
+Covid-19 has dropped a bombshell out of the blue and caught the world unaware. It has negatively impacted the lives of millions and proved fatal to thousands of others. With over 25 million cases and 800K deaths around the globe as of Sep 2020, this has been a serious issue of concern for the Governments of all the countries. Amidst the pandemic, this is the story of how Colombia was affected by it. This blog story helps us understand the Covid-19 situation in Colombia.
+
+# **Data Description -**
+
+```{r ReadData}
+covidCOL <- COVID19::covid19(country = "Colombia", verbose = FALSE)
+```
+
+* The data used for this blog story is obtained from: **Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376**, through the R package "COVID19" and filtered for the country Colombia.
+
+* Date ranges from `r min(covidCOL$date)` to `r max(covidCOL$date)`.
+
+* The following table consists of the **columns of interest and their values**.
+
+```{r table1, fig.cap='Data Table'}
+covidCOL %>% select(date, tests, confirmed, recovered, deaths) %>% datatable()
+```
+
+* The above table is interactive and can be used to get an overview of the data. Specifics like when the testings started, when the first case was confirmed, how many recovered, and how many had died can be determined by exploring the table. Click on 'Next' to explore.
+
+* Colombia had started testing for Covid during March 2020 when the cases started rising throughout the world. Testing in Colombia seems to have started on 05 March 2020. The first confirmed case was on 06 Mar 2020. The first fatality due to Covid was on 16 Mar 2020.
+
+### **Data Story 1: How the pandemic affected Colombia**
+
+* Let us have a look at the time-lines for tests, confirmed, recovered, and deaths.
+
+```{r plot1, fig.cap='Covid Timeline in Colombia'}
+TimeCOL <- covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = tests, color = "tested")) +
+  geom_line(aes(x = date, y = confirmed, color = "confirmed")) +
+  geom_line(aes(x = date, y = recovered, color = "recovered")) +
+  geom_line(aes(x = date, y = deaths, color = "deaths")) +
+  xlab("Date") + ylab("Attribute Counts") + ggtitle("Timeline Curves for Covid in Colombia") +
+  theme_light()
+
+ggplotly(TimeCOL)
+```
+
+* As inferred from the interactive table \@ref(fig:table1), tests have begun before the first case was confirmed in March. This might indicate that the pandemic was rising elsewhere and had not spread to Colombia yet.
+
+* There is a close relation with the number of people recovered with the confirmed cases. This indicates most of the people recovered approximately within 2-3 weeks after infection. The curve is being flattened after it peaked in August.
+
+* We can observe that the recovery time-line is not continuous in the beginning around March and the confirmed time-line has some discontinuity towards the end. This shows that these numbers were stagnant and not recorded until the count increased.
+
+* It will be a good idea to view each attribute separately to get a better picture since deaths are very low in numbers and aren't distinctly visible.
+
+```{r plot2, fig.cap='Comparing Tests, Cases, Recoveries, and Deaths'}
+test <- covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = tests), color = "darkorchid") +
+  xlab("Date") + ylab("Tests") + ggtitle("Total Tests") +
+  theme_bw()
+
+conf <- covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = confirmed), color = "indianred2") +
+  xlab("Date") + ylab("Tests") + ggtitle("Total Confirmed Cases") +
+  theme_bw()
+
+reco <- covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = recovered), color = "lightseagreen") +
+  xlab("Date") + ylab("Tests") + ggtitle("Total Recovered") +
+  theme_bw()
+
+deat <- covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = deaths), color = "limegreen") +
+  xlab("Date") + ylab("Deaths") + ggtitle("Total Deaths") +
+  theme_bw()
+
+ggarrange(test, conf, reco, deat)
+```
+
+* The above plot confirms our inference about discontinuity in line for recovery and confirmed time-lines in the beginning and towards the end respectively.
+
+* The curve seems to be flattening off late in Colombia.
+
+* Totals for each attribute in Colombia:
+
+  + Total Tests - `r na.omit(covidCOL$tests) %>% max()`
+  + Total Confirmed - `r na.omit(covidCOL$confirmed) %>% max()`
+  + Total Recovered - `r na.omit(covidCOL$recovered) %>% max()`
+  + Total Deaths - `r na.omit(covidCOL$deaths) %>% max()`
+  
+### **Data Story 2- How the pandemic evolved daily in Colombia**
+  
+* **A useful way to summarize data is by daily basis.** We have only totals recorded in the data and we create a table of daily counts using the lag() function. This helps us analyze how Covid counts changed on daily basis rather than totals.
+  
+```{r Daily}
+nCovCOL <- covidCOL %>% select(date, tests, confirmed, recovered, deaths)
+
+Daily <- nCovCOL %>% mutate(lag_tests = lag(nCovCOL$tests),
+                  dailytest = (nCovCOL$tests - lag_tests),
+                  lag_confirm = lag(nCovCOL$confirmed),
+                  dailyconfirm = (nCovCOL$confirmed - lag_confirm),
+                  lag_recover = lag(nCovCOL$recovered),
+                  dailyrecover = (nCovCOL$recovered - lag_recover),
+                  lag_deaths = lag(nCovCOL$deaths),
+                  dailydeaths = (nCovCOL$deaths - lag_deaths)) %>% 
+  select(date, dailytest, dailyconfirm, dailyrecover, dailydeaths)
+```
+
+```{r table2, fig.cap='Daily Data'}
+Daily %>% datatable()
+```
+
+* The above table \@ref(fig:table2) shows the daily evolution of number of counts for each attribute.
+
+* Daily Average Values for each attribute in Colombia:
+  + Average Tests per Day - `r round(mean(na.omit(Daily$dailytest))) `
+  + Average Cases Confirmed per Day - `r round(mean(na.omit(Daily$dailyconfirm)))`
+  + Average Recoveries per Day - `r round(mean(na.omit(Daily$dailyrecover)))`
+  + Average Deaths per Day - `r round(mean(na.omit(Daily$dailydeaths)))`
+
+```{r plot3, fig.cap='Daily Timeline Curves'}
+DailyTime <- Daily %>% ggplot() +
+  geom_line(aes(x = date, y = dailytest, color = "dailytested")) +
+  geom_line(aes(x = date, y = dailyconfirm, color = "dailyconfirmed")) +
+  geom_line(aes(x = date, y = dailyrecover, color = "dailyrecovered")) +
+  geom_line(aes(x = date, y = dailydeaths, color = "dailydeaths")) +
+  xlab("Date") + ylab("Attribute Counts") +
+  ggtitle("Daily Timeline Curves for Covid in Colombia") +
+  theme_light()
+
+ggplotly(DailyTime)
+```
+
+* We can observe from the above plot that there has been a drastic decrease in confirmed cases during the end of August and those that were infected then, have recovered within 2-3 weeks.
+
+* Cases have almost decreased towards zero after September 2020. The rising curve is less steeper than the decreasing curve. This goes to show that Colombia controlled the spread of the pandemic in a great way!
+
+* Separating the graphs gives a better picture of how each attribute counts evolved daily.
+
+```{r plot4, fig.cap='Comparing Daily Tests, Cases, Recoveries, and Deaths'}
+dailytest <- Daily %>% ggplot() +
+  geom_line(aes(x = date, y = dailytest), color = "darkorchid") +
+  geom_hline(yintercept = mean(na.omit(Daily$dailytest))) +
+  xlab("Date") + ylab("Daily Tests") + ggtitle("Daily Tests") +
+  theme_bw()
+
+dailyconf <- Daily %>% ggplot() +
+  geom_line(aes(x = date, y = dailyconfirm), color = "indianred2") +
+  geom_hline(yintercept = mean(na.omit(Daily$dailyconfirm))) +
+  xlab("Date") + ylab("Daily Confirmed") + ggtitle("Daily Confirmed Cases") +
+  theme_bw()
+
+dailyreco <- Daily %>% ggplot() +
+  geom_line(aes(x = date, y = dailyrecover), color = "lightseagreen") +
+  geom_hline(yintercept = mean(na.omit(Daily$dailyrecover))) +
+  xlab("Date") + ylab("Daily Recovered") + ggtitle("Daily Recovered") +
+  theme_bw()
+
+dailydeat <- Daily %>% ggplot() +
+  geom_line(aes(x = date, y = dailydeaths), color = "limegreen") +
+  geom_hline(yintercept = mean(na.omit(Daily$dailydeaths))) +
+  xlab("Date") + ylab("Daily Deaths") + ggtitle("Daily Deaths") +
+  theme_bw()
+
+ggarrange(dailytest, dailyconf, dailyreco, dailydeat)
+```
+
+* The x-axes represent the Months/Time-line and the y-axes represent the daily counts for that attribute. The black horizontal line represents the average daily counts till date.
+
+* Covid was at its peak during August in Colombia after seeing a rise from July onwards. We can observe that the situation was brought under control within one month and the cases drastically decreased towards the beginning of September.
+
+* Tests are still being conducted but the test counts are lowering since the confirmed cases and deaths are decreasing. The first wave of the pandemic is controlled with cases and death counts decreased to less than the daily average values. The number of recoveries has increased over daily average value, which again, is a good sign.
+
+* In conclusion, Colombia was hit with the pandemic during early March and slowly started increasing after July. It peaked during August 2020 with almost around 17000 cases and 350 deaths in a single day. This situation was brought under control and the counts have drastically decreased towards the beginning of September 2020. Colombia needs to continue this to eradicate the pandemic as soon as possible.
+
+# **References -**
+
+* Data Source - Guidotti, E., Ardia, D., (2020), "COVID-19 Data Hub", Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376
+
+* Data Tables - https://rstudio.github.io/DT/
+
+* Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software,
+  4(43), 1686, https://doi.org/10.21105/joss.01686
+
+* Kirill Müller (2017). here: A Simpler Way to Find Your Files. R package version 0.1.
+  https://CRAN.R-project.org/package=here
+  
+* C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman
+  and Hall/CRC Florida, 2020.
+  
+* Alboukadel Kassambara (2020). ggpubr: 'ggplot2' Based Publication Ready Plots. R
+  package version 0.4.0. https://CRAN.R-project.org/package=ggpubr
