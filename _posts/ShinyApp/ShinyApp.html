@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://rahul-bharadwaj.netlify.app/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -20,366 +19,39 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-  <title>My Blog: Blog Entries</title>
+  <title>COVID-19 in Colombia &amp; South Africa - R Shiny App</title>
+  
+  <meta property="description" itemprop="description" content="Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application."/>
   
   
-  
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-10-16"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-10-16"/>
+  <meta name="article:author" content="Rahul Bharadwaj"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="My Blog: Blog Entries"/>
+  <meta property="og:title" content="COVID-19 in Colombia &amp; South Africa - R Shiny App"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="My Blog"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="My Blog: Blog Entries"/>
+  <meta property="twitter:title" content="COVID-19 in Colombia &amp; South Africa - R Shiny App"/>
+  <meta property="twitter:description" content="Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application."/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog Entries"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["COVID-19 in Colombia & South Africa - R Shiny App"]},{"type":"character","attributes":{},"value":["Self Reflection - A data story of COVID-19 in Colombia & South Africa in an R Shiny Application.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Rahul Bharadwaj"]},{"type":"character","attributes":{},"value":["https://rahul-bharadwaj.github.io/My-Portfolio/"]},{"type":"character","attributes":{},"value":["Monash University"]}]}]},{"type":"character","attributes":{},"value":["10-16-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Images/Covid.png"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-  <!--radix_placeholder_navigation_in_header-->
   
-  <script type="application/javascript">
-  
-    window.headroom_prevent_pin = false;
-  
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-  
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-  
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-  
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["ShinyApp_files/bowser-1.9.3/bowser.min.js","ShinyApp_files/distill-2.2.21/template.v2.js","ShinyApp_files/jquery-1.11.3/jquery.min.js","ShinyApp_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
-  
-  <style type="text/css">
-  
-  /* Theme (user-documented overrideables for nav appearance) */
-  
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #455a64;
-    font-size: 15px;
-    font-weight: 300;
-  }
-  
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .distill-site-nav a:hover {
-    color: white;
-  }
-  
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  
-  .distill-site-header {
-  
-  }
-  
-  .distill-site-footer {
-  
-  }
-  
-  
-  /* Site Header */
-  
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-  
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-  
-  
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-  
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-  
-  .distill-site-header .title {
-    font-size: 18px;
-  }
-  
-  .distill-site-header .logo {
-    padding: 0;
-  }
-  
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-  
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  
-  
-  
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-  
-  
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-  
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-  
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-dropdown-active {
-    display: block;
-  }
-  
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-  
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-  
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative;}
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-  
-  /* Site Footer */
-  
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-  
-  /* Headroom */
-  
-  d-title {
-    padding-top: 6rem;
-  }
-  
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-  
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-  
-  .headroom--unpinned {
-    top: -100px;
-  }
-  
-  .headroom--pinned {
-    top: 0;
-  }
-  
-  </style>
-  
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
   
@@ -1265,414 +937,94 @@
   </script>
   
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="ShinyApp_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="ShinyApp_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="ShinyApp_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="ShinyApp_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Blog Entries","authors":[]}
+{"title":"COVID-19 in Colombia & South Africa - R Shiny App","description":"Self Reflection - A data story of COVID-19 in Colombia & South Africa in an R Shiny Application.","authors":[{"author":"Rahul Bharadwaj","authorURL":"https://rahul-bharadwaj.github.io/My-Portfolio/","affiliation":"Monash University","affiliationURL":"#"}],"publishedDate":"2020-10-16T00:00:00.000+11:00","citationText":"Bharadwaj, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">My Blog</a>
-<a href="about.html">About</a>
-</div>
-<div class="nav-right">
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-<style type="text/css">
-
-/* Styles for listing layout (hide title) */
-.layout-listing d-title, .layout-listing .d-title {
-  display: none;
-}
-
-/* Styles for posts lists (not auto-injected) */
-
-
-.posts-with-sidebar {
-  padding-left: 45px;
-  padding-right: 45px;
-}
-
-.posts-list .description h2,
-.posts-list .description p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-}
-
-.posts-list .description h2 {
-  font-weight: 700;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.posts-list h2.post-tag {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 12px;
-}
-.posts-list {
-  margin-top: 60px;
-  margin-bottom: 24px;
-}
-
-.posts-list .post-preview {
-  text-decoration: none;
-  overflow: hidden;
-  display: block;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 24px 0;
-}
-
-.post-preview-last {
-  border-bottom: none !important;
-}
-
-.posts-list .posts-list-caption {
-  grid-column: screen;
-  font-weight: 400;
-}
-
-.posts-list .post-preview h2 {
-  margin: 0 0 6px 0;
-  line-height: 1.2em;
-  font-style: normal;
-  font-size: 24px;
-}
-
-.posts-list .post-preview p {
-  margin: 0 0 12px 0;
-  line-height: 1.4em;
-  font-size: 16px;
-}
-
-.posts-list .post-preview .thumbnail {
-  box-sizing: border-box;
-  margin-bottom: 24px;
-  position: relative;
-  max-width: 500px;
-}
-.posts-list .post-preview img {
-  width: 100%;
-  display: block;
-}
-
-.posts-list .metadata {
-  font-size: 12px;
-  line-height: 1.4em;
-  margin-bottom: 18px;
-}
-
-.posts-list .metadata > * {
-  display: inline-block;
-}
-
-.posts-list .metadata .publishedDate {
-  margin-right: 1em;
-}
-
-.posts-list .metadata .tags {
-  margin-top: 1em;
-}
-
-.posts-list .tags .tag {
-  color: rgba(0,0,0,0.67);
-  padding: 0.3em 0.5em;
-  margin: 0;
-  font-size: 80%;
-  border: 1px solid rgba(0,0,0,0.4);
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.posts-list img {
-  opacity: 1;
-}
-
-.posts-list img[data-src] {
-  opacity: 0;
-}
-
-.posts-more {
-  clear: both;
-}
-
-
-.posts-sidebar {
-  font-size: 16px;
-}
-
-.posts-sidebar h3 {
-  font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.sidebar-section {
-  margin-bottom: 30px;
-}
-
-.categories ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.categories li {
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 0;
-}
-
-.categories li>a {
-  border-bottom: none;
-}
-
-.categories li>a:hover {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-}
-
-.categories .active {
-  font-weight: 600;
-}
-
-.categories .category-count {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-
-@media(min-width: 768px) {
-  .posts-list .post-preview h2 {
-    font-size: 26px;
-  }
-  .posts-list .post-preview .thumbnail {
-    float: right;
-    width: 35%;
-    margin-bottom: 0;
-  }
-  .posts-list .post-preview .description {
-    float: left;
-    width: 45%;
-  }
-  .posts-list .post-preview .metadata {
-    float: left;
-    width: 15%;
-    margin-top: 8px;
-  }
-  .posts-list .post-preview p {
-    margin: 0 0 12px 0;
-    line-height: 1.5em;
-    font-size: 16px;
-  }
-  .posts-with-sidebar .posts-list {
-    float: left;
-    width: 72%;
-  }
-  .posts-with-sidebar .posts-sidebar {
-    float: right;
-    width: 20%;
-    margin-top: 60px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
-}
-
-.downlevel .posts-list .post-preview {
-  color: inherit;
-}
-
-</style>
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace("#", "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if (category == page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-apply-limit l-page">
-<div class="posts-list">
-<h1 class="posts-list-caption">Blog Entries</h1>
-<a href="posts/ShinyApp/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 16, 2020</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>COVID-19 in Colombia &amp; South Africa - R Shiny App</h2>
-<p>Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application.</p>
-</div>
-</a>
-<a href="posts/Covid-19-COL/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 12, 2020</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/Covid-19-COL/Covid-19-COL_files/figure-html5/plot2-1.png"/>
-</div>
-<div class="description">
-<h2>COVID-19 in Colombia</h2>
-<p>A data story of COVID-19 in Colombia</p>
-</div>
-</a>
-<a href="posts/Covid-19-SA/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 4, 2020</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/Covid-19-SA/Covid-19-SA_files/figure-html5/plot1-1.png"/>
-</div>
-<div class="description">
-<h2>COVID-19 in South Africa</h2>
-<p>A data story of COVID-19 in South Africa</p>
-</div>
-</a>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Blog Entries</h1>
-
+<h1>COVID-19 in Colombia &amp; South Africa - R Shiny App</h1>
+<p><p>Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application.</p></p>
 </div>
 
+<div class="d-byline">
+  Rahul Bharadwaj <a href="https://rahul-bharadwaj.github.io/My-Portfolio/" class="uri">https://rahul-bharadwaj.github.io/My-Portfolio/</a> (Monash University)
+  
+<br/>10-16-2020
+</div>
 
 <div class="d-article">
-
+<h2 id="introduction--"><strong>Introduction -</strong></h2>
+<ul>
+<li><p>This is a blog post describing an R Shiny Application that combines the work from the previous blogs <a href="https://rahul-bharadwaj.netlify.app/posts/covid-19-col/">Covid-19 in Colombia (12 Sep 2020)</a> and <a href="https://rahul-bharadwaj.netlify.app/posts/covid-19-sa/">Covid-19 in South Africa (4 Sep 2020)</a>.</p></li>
+<li><p>This <a href="https://rahul-bharadwaj-mysore-venkatesh.shinyapps.io/shiny-assessment-rahul-bharadwaj/">Shiny Application</a> is a dashboard of Covid-19 stats for the countries Colombia and South Africa. The purpose of this Shiny App is to make the explanation easy, interactive and concise in the form of a Web-App that can be shared and easily used. Interactive and UI-based data stories are more effective in conveying the explanations and involving the user completely.</p></li>
+</ul>
+<p>There are three main tabs in the Shiny App that covers the data story/message to be conveyed to the reader.</p>
+<ul>
+<li><p><strong>Total Count Comparison:</strong> Compares Total tests, cases, recoveries, and deaths till date in Colombia and South Africa.</p></li>
+<li><p><strong>Attribute Count Comparison:</strong> Compares tests, cases, recoveries, and deaths as single attributes for both the countries.</p></li>
+<li><p><strong>Daily Counts:</strong> Has a sub-menu for each country that explores the Daily Counts of tests, cases, recoveries, and deaths due to Covid-19.</p></li>
+</ul>
+<p>It has an easy to use interface and conclusions can be drawn by the reader based on their observations. Self-reflection is an important part of learning and gaining perspective about ourselves in terms of where we stand and what we can do to get better. As a part of this process, the following section describes my journey of self-reflection.</p>
+<h2 id="self-review--"><strong>Self Review -</strong></h2>
+<h3 id="what-did-i-do-well"><strong>What did I do well?</strong></h3>
+<p>It’s always good to start with something that went well when going through a self-reflection process. So the first thing I would like to self-reflect upon is the things that I’m good at and did well.</p>
+<ul>
+<li><p>I consider myself creative and I’m happy with the fact that I have made a dashboard that is visually appealing. The unique part about the picture in the ‘About’ section is that I designed it myself to best reflect the content the reader can expect with a glance.</p></li>
+<li><p>As part of analyzing the Covid-19 situation in Colombia and South Africa, I have done a fairly decent job in conveying the stats clearly to the reader. The choice of graphs for a variable over time is precise and a time-line best describes this kind of data. There are bar plots used to directly compare the absolute counts of Tests, Cases, Recoveries, and Deaths in both the regions and gives a clear picture to the reader. Interactive plots help in assessing a variable at a particular point in time and this is made available which immerses the user and captures their complete attention.</p></li>
+<li><p>There is enough instructions embedded in the App to make sure the user has a clear idea on how to use it and learn from it.</p></li>
+</ul>
+<h3 id="what-are-some-things-i-can-improve-on"><strong>What are some things I can improve on?</strong></h3>
+<p>Self-reflection on past mistakes and points that we can improve upon are as important as identifying what went well or what we did right. This process helps us learn better and be better than we already are.</p>
+<ul>
+<li><p>Implementation of a ‘plotly’ event would make the App more interactive and immersive for the user. Learning better use of handling ‘plotly’ data will be a point to improve upon.</p></li>
+<li><p>Use of external styling files could further enhance the visual appeal of the App and overall user experience.</p></li>
+</ul>
+<h3 id="some-plausible-things-that-can-be-added--"><strong>Some plausible things that can be added -</strong></h3>
+<p>Some of the plausible things that can be added to enhance the analysis and the data story conveyed through the App are as follows:</p>
+<ul>
+<li><p>The dataset can be extended with external data to reflect data of each state in the country to make a comparison of the regions in the country that were affected.</p></li>
+<li><p>Location data about the states can be used to make leaflet plots to visually display the parts of the country that were affected by the pandemic. Spatial Data is required to implement the same.</p></li>
+</ul>
+<h3 id="data-or-technology-limitations--"><strong>Data or Technology Limitations -</strong></h3>
+<p>Some things cannot be donw yet with the current data/technology and these limitations are as follows:</p>
+<ul>
+<li><p>Data Limitation - There is no spatial data consisting of longitude and latitude for states and this limits the analysis. The entire country will not be affected uniformly throughout and some visual representation of the worst-hit parts of the country can further enhance the scope of analysis. This can be done by combining the data with another external source of data with information on the statistics in each state.</p></li>
+<li><p>Technology Limitation - The data source, and thus the dashboard, are static and are not dynamic. Once the App is created, it will not reflect real-time data but limits to the day the code was created for the App. With a real-time data source, it makes the App more relevant for a longer duration of time after the publication. The files need to be knit often to make the App refelect the most recent data.</p></li>
+</ul>
+<h2 id="referencescitation--">References/Citation -</h2>
+<h3 id="data-source">Data Source:</h3>
+<ul>
+<li>Guidotti, E., Ardia, D., (2020), “COVID-19 Data Hub”, Journal of Open Source Software 5(51):2376, doi: 10.21105/joss.02376.</li>
+</ul>
+<h3 id="r-packages">R packages:</h3>
+<ul>
+<li><p>Winston Chang, Joe Cheng, JJ Allaire, Yihui Xie and Jonathan McPherson (2020). shiny: Web Application Framework for R. R package version 1.5.0. <a href="https://CRAN.R-project.org/package=shiny" class="uri">https://CRAN.R-project.org/package=shiny</a></p></li>
+<li><p>Winston Chang (2018). shinythemes: Themes for Shiny. R package version 1.1.2. <a href="https://CRAN.R-project.org/package=shinythemes" class="uri">https://CRAN.R-project.org/package=shinythemes</a></p></li>
+<li><p>Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a></p></li>
+<li><p>C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman and Hall/CRC Florida, 2020.</p></li>
+<li><p>Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript Library ‘DataTables’. R package version 0.15. <a href="https://CRAN.R-project.org/package=DT" class="uri">https://CRAN.R-project.org/package=DT</a></p></li>
+<li><p>Greg Lin (2020). reactable: Interactive Data Tables Based on ‘React Table’. <a href="https://glin.github.io/reactable/" class="uri">https://glin.github.io/reactable/</a>, <a href="https://github.com/glin/reactable" class="uri">https://github.com/glin/reactable</a>.</p></li>
+</ul>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

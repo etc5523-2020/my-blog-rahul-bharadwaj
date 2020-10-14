@@ -7,7 +7,15 @@
     <description>ETC5523-Blog-Entry-1
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>COVID-19 in Colombia &amp; South Africa - R Shiny App</title>
+      <dc:creator>Rahul Bharadwaj</dc:creator>
+      <link>https://rahul-bharadwaj.netlify.app/posts/ShinyApp</link>
+      <description>Self Reflection - A data story of COVID-19 in Colombia &amp; South Africa in an R Shiny Application.</description>
+      <guid>https://rahul-bharadwaj.netlify.app/posts/ShinyApp</guid>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>COVID-19 in Colombia</title>
       <dc:creator>Rahul Bharadwaj</dc:creator>
