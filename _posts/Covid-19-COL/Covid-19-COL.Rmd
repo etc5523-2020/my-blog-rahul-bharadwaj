@@ -63,7 +63,7 @@ ggplotly(TimeCOL)
 
 * As inferred from the interactive table \@ref(fig:table1), tests have begun before the first case was confirmed in March. This might indicate that the pandemic was rising elsewhere and had not spread to Colombia yet.
 
-* There is a close relation with the number of people recovered with the confirmed cases. This indicates most of the people recovered approximately within 2-3 weeks after infection. The curve is being flattened after it peaked in August.
+* There is a close relation with the number of people recovered with the confirmed cases in \@ref(fig:plot1). This indicates most of the people recovered approximately within 2-3 weeks after infection. The curve is being flattened after it peaked in August.
 
 * We can observe that the recovery time-line is not continuous in the beginning around March and the confirmed time-line has some discontinuity towards the end. This shows that these numbers were stagnant and not recorded until the count increased.
 
@@ -77,12 +77,12 @@ test <- covidCOL %>% ggplot() +
 
 conf <- covidCOL %>% ggplot() +
   geom_line(aes(x = date, y = confirmed), color = "indianred2") +
-  xlab("Date") + ylab("Tests") + ggtitle("Total Confirmed Cases") +
+  xlab("Date") + ylab("Confirmed") + ggtitle("Total Confirmed Cases") +
   theme_bw()
 
 reco <- covidCOL %>% ggplot() +
   geom_line(aes(x = date, y = recovered), color = "lightseagreen") +
-  xlab("Date") + ylab("Tests") + ggtitle("Total Recovered") +
+  xlab("Date") + ylab("Recovered") + ggtitle("Total Recovered") +
   theme_bw()
 
 deat <- covidCOL %>% ggplot() +
@@ -93,9 +93,9 @@ deat <- covidCOL %>% ggplot() +
 ggarrange(test, conf, reco, deat)
 ```
 
-* The above plot confirms our inference about discontinuity in line for recovery and confirmed time-lines in the beginning and towards the end respectively.
+* The above plot \@ref(fig:plot2) confirms our inference about discontinuity in line for recovery and confirmed time-lines in the beginning and towards the end respectively.
 
-* The curve seems to be flattening off late in Colombia.
+* The curve seems to be flattening off late in Colombia with the confirmed cases and deaths flattening off late.
 
 * Totals for each attribute in Colombia:
 
@@ -147,9 +147,9 @@ DailyTime <- Daily %>% ggplot() +
 ggplotly(DailyTime)
 ```
 
-* We can observe from the above plot that there has been a drastic decrease in confirmed cases during the end of August and those that were infected then, have recovered within 2-3 weeks.
+* We can observe from the above plot \@ref(fig:plot3) that there has been a drastic decrease in confirmed cases during the end of August and those that were infected then, have recovered within 2-3 weeks.
 
-* Cases have almost decreased towards zero after September 2020. The rising curve is less steeper than the decreasing curve. This goes to show that Colombia controlled the spread of the pandemic in a great way!
+* Cases have almost decreased towards zero after September 2020. The rising curve is less steeper than the decline curve. This goes to show that Colombia controlled the spread of the pandemic in a great way!
 
 * Separating the graphs gives a better picture of how each attribute counts evolved daily.
 
@@ -181,13 +181,47 @@ dailydeat <- Daily %>% ggplot() +
 ggarrange(dailytest, dailyconf, dailyreco, dailydeat)
 ```
 
-* The x-axes represent the Months/Time-line and the y-axes represent the daily counts for that attribute. The black horizontal line represents the average daily counts till date.
+* In the above plot \@ref(fig:plot4), the x-axes represent the Months/Time-line and the y-axes represent the daily counts for that attribute. The black horizontal line represents the average daily counts till date.
 
-* Covid was at its peak during August in Colombia after seeing a rise from July onwards. We can observe that the situation was brought under control within one month and the cases drastically decreased towards the beginning of September.
+* Covid was at its peak during August in Colombia after seeing a rise from June onward. We can observe that the situation was brought under control and the cases drastically decreased towards the beginning of September.
 
 * Tests are still being conducted but the test counts are lowering since the confirmed cases and deaths are decreasing. The first wave of the pandemic is controlled with cases and death counts decreased to less than the daily average values. The number of recoveries has increased over daily average value, which again, is a good sign.
 
-* In conclusion, Colombia was hit with the pandemic during early March and slowly started increasing after July. It peaked during August 2020 with almost around 17000 cases and 350 deaths in a single day. This situation was brought under control and the counts have drastically decreased towards the beginning of September 2020. Colombia needs to continue this to eradicate the pandemic as soon as possible.
+### **Bonus Story -**
+
+* As an addition to these trends, let's have a look at the trends of restrictions in Colombia. This will help us verify our insights as restrictions are usually directly proportional to confirmed cases.
+
+```{r plot5, fig.cap='Restrictions in Colombia'}
+covidCOL %>% ggplot() +
+  geom_line(aes(x = date, y = transport_closing, color = "TransportClosed(0-1)")) +
+  geom_line(aes(x = date, y = school_closing, color = "SchoolClosed(0-3)")) +
+  geom_line(aes(x = date, y = workplace_closing, color = "WorkplaceClosed(0-3)")) +
+  geom_line(aes(x = date, y = gatherings_restrictions, color = "GatheringRestrictions(0-4)")) +
+  ggtitle("Restrictions Timeline in Colombia as Line Plots") +
+  xlab("Date") + ylab("Restriction Stages") + theme_bw()
+```
+
+* The above line plot \@ref(fig:plot5) displays how restrictions were changed throughout the course of the pandemic. The x-axis displays Date while the y-axis displays the restriction stage for each attribute line. The different colors represent the different restrictions for the particular attribute which includes Social Gatherings, School, Workplace, and Transport operations in Colombia.
+
+* **Social gatherings:** have been restricted to stage 2 as the pandemic evolved and increased from March. From April, we see a stage 3 restriction for gatherings which went to stage 4 during May and remained as such till September where it has come back to stage 3. This verifies our conclusion that the pandemic has been contolled off late.
+
+* **Schools and Transport:** have remained closed from March and haven't opened yet.
+
+* **Workplaces:** were closed at stage 1 in March. This restriction was raised to stage 3 during April. May, most of June and beginning of July sees a lift of restrictions to stage 2. This shows that working is essential for a country to run and they remianed with lesser restrictions compared to other attributes. August sees a raise to stage 3 and in September, the restrictions are lifted to as low as stage 1. This again indicates the control of the pandemic.
+
+```{r plot6, fig.cap='Restrictions in Colombia as Smooth Curves'}
+covidCOL %>% ggplot() +
+  geom_smooth(aes(x = date, y = transport_closing, color = "TransportClosed(0-1)")) +
+  geom_smooth(aes(x = date, y = school_closing, color = "SchoolClosed(0-3)")) +
+  geom_smooth(aes(x = date, y = workplace_closing, color = "WorkplaceClosed(0-3)")) +
+  geom_smooth(aes(x = date, y = gatherings_restrictions, color = "GatheringRestrictions(0-4)")) +
+  ggtitle("Restrictions Timeline in Colombia as Curves") +
+  xlab("Date") + ylab("Restriction Stages") + theme_bw()
+```
+
+* The above plot \@ref(fig:plot6) shows a smooth trend of the restrictions for different attributes in Colombia. We can see that none of the restrictions are completely lifted yet. Workplace restrictions has seen the maximum variation in trend for the reasons stated previously. Gathering restrictions seem to have lowered off late.
+
+* In conclusion, Colombia was hit with the pandemic during early March and slowly started increasing after June. It peaked during August 2020 with almost around 17000 cases and 350 deaths on any single day. This situation was brought under control and the counts have drastically decreased towards the beginning of September 2020. Colombia needs to continue this to eradicate the pandemic as soon as possible.
 
 # **References -**
 
