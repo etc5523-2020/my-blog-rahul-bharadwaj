@@ -16,6 +16,22 @@
     "input_file": {}
   },
   {
+    "path": "posts/R-Package/",
+    "title": "Review of R Package 'COVID19top4'",
+    "description": "Package Review - A review of R package 'COVID19top4'",
+    "author": [
+      {
+        "name": "Rahul Bharadwaj",
+        "url": "https://rahul-bharadwaj.github.io/My-Portfolio/"
+      }
+    ],
+    "date": "2020-10-16",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-25T18:23:38+11:00",
+    "input_file": "R-Package.utf8.md"
+  },
+  {
     "path": "posts/Covid-19-COL/",
     "title": "COVID-19 in Colombia",
     "description": "A data story of COVID-19 in Colombia",

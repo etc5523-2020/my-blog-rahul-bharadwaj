@@ -1,0 +1,87 @@
+---
+title: "Review of R Package 'COVID19top4'"
+description: |
+  Package Review - A review of R package 'COVID19top4'
+author:
+  - name: Rahul Bharadwaj
+    url: https://rahul-bharadwaj.github.io/My-Portfolio/
+    affiliation: Monash University
+date: 10-16-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+## **Introduction -**
+
+This blog post serves as a peer review of the R package ['COVID19top4'](https://etc5523-2020.github.io/r-package-assessment-Varsha-Ujjinni-VijayKumar/index.html) developed by [Varsha](https://www.linkedin.com/in/varsha-ujjinni-vijay-kumar-1026121a4/).
+
+This R package primarily consists of a Shiny Dashboard on COVID19 in the Top 4 most affected countries USA, India, Brazil, and Russia. There are functions within the package that help make the code in the Shiny App much more condensed and simpler. This package is an overview of the COVID19 situation in the worst affected countries as of October 2020. The Shiny App embedded in the package provides a spatial representation of the affected states within each of the countries along with the Top 5 states as a bar chart. It has a tab which displays the tabular data used for the dashboard along with the comparison of cases, deaths, and recoveries among the 4 countries.
+
+### **What did I expect from this package?**
+
+On the first look, the name of the package 'COVID19top4' seems like Covid-19 stats for the top 4 affected countries and that's exactly what the package offers. The package also has easy to use functions that automatically starts the R Shiny App for user interaction. It has a comprehensive comparison of the counts of cases, deaths, and recoveries in each country and a comparison between the different states in the country. With a detailed information about Covid symptoms and precautions in the introduction and well cited references and 'about' section, this App delivers a well-rounded piece of work that can be easily used to understand the Covid situation across the globe. In addition to the functions that the package provides, there are also datasets that can be easily loaded out of the box and used for our own analysis. The package delivered all the functionality needed/expected.
+
+### **Suggested Improvements -**
+
+**Code improvements -**
+
+Code within the ui function of the shiny app can be made more concise by using external files to display explanations and references (Eg: includeHTML(), includeText() etc). Since the data sets used are saved as `inst/extdata/`, some of these large textual information can be saved in the same directory and referred in the app.R file.
+
+**Shiny App improvements -**
+
+UI experience: The gif file in the front page can be limited not to extend over the text which makes reading experience better. Text in the Data tab, about, and references can be made better with embedded markdown files as suggested earlier.
+
+Plot Functionality: There can be some improvements made to the visualizations such as the following. The graph in the 'States within the country' tab can be made better by adding the month names and having smooth curves instead of steps as in some cases. The Top5 bar chart will be better if it reflects just the Top5 as the name suggests or can be renamed to something that is suitable for what the graph displays.
+
+**Documentation improvements -**
+
+Documentation: There is enough documentation to get started and use the package as expected. The `/man/` folder has enough documentation that covers all datasets and function descriptions. A possible addition would be to better format the documentations with more examples.
+
+## **Conclusion -**
+
+Reviewing a package developed by a peer is the best way to understand diverse views and thoughts about the same process. I have learned how I could have made my own package better in the process of reviewing another package. Peer suggestions and mutual help develops a sense of belonging and oneness that is most essential while working on real-time projects in the future. This process has helped me develop written communication and other soft skills necessary for a fruitful career. As a kind gesture, I would like to thank all my professors and tutors for designing a comprehensive curriculum that not only teaches technology, but also helps us grow as a person! 
+
+
+## **Appendix -**
+
+### Package Review
+
+- **As a peer and classmate of [Varsha](https://www.linkedin.com/in/varsha-ujjinni-vijay-kumar-1026121a4/), I'm glad I have the opportunity of reviewing her R-Package 'COVID19top4'. A summary of the review is as follows.**
+
+#### Documentation
+
+The package includes all the following forms of documentation:
+
+- [x] **Repository has a folder** called `inst/app/` that contains the relevant R code to run the shiny application.
+- [x] **There is an exported function** called `launch_app()` that will find and load the shiny application from `inst/app`.
+- [x] **Refactor at least one part of the user interface-side logic** of your app into R functions that are exported by your R package.
+- [x] **Refactor at least one part of the server-side logic** of your app into R functions that are exported by your R package.
+- [x] **At least one unit test** for the functions you created to simplify the user interface and server of your app.
+- [x] **All functions in the package are documented** with roxygen2 according to guidelines given in lectures.
+- [x] **The DEESCRIPTION file includes** an informative name and title for your package, as well as a valid author, field and dependencies. There should also be a valid LICENCE file.
+- [x] **A vignette** that describes how to launch the app, what the app does, and guidelines for its
+use.
+- [x] **There is a README.md** file that has clear instructions on how to install the package from GitHub, and gives a big picture overview of the package.
+- [x] **There is a pkgdown site** that contains the documentation for your package.
+- [x] The pkgdown site has **customised at least one element** of the _pkgdown.yaml file.
+- [x] The pkgdown site is **available publicly via deployment from Github Actions**.
+
+
+#### Functionality
+
+- [x] **Installation:** Installation succeeds as documented.
+- [x] **Functionality:** Any functional claims of the software been confirmed.
+- [x] **R CMD CHECK** passes without errors or warnings.
+- [x] **Automated tests:** Unit tests cover essential functions of the package
+   and a reasonable range of inputs and conditions. All tests pass on the local machine.
+
+Estimated hours spent reviewing: 3 hours
+
+- [x] Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.
+
+---
+
+### Review Comments
+
+All basic requirements defined by the assignment guidelines are met.
